@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Full Blue Lily Garden for My Crush</title>
+  <style>
+    /* Basic page styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #a1c4fd, #c2e9fb);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: rgb(0, 0, 0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+      text-align: center;
+    }
+    
+    /* Heartfelt message styling */
+    .message {
+      z-index: 2;
+      animation: fadeIn 3s ease-in-out;
+      margin-top: 20px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Garden container for the planted lilies at the bottom */
+    .garden {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-end;
+      padding: 10px;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Styling for each huge lily and its swaying animation */
+    .lily-planted {
+      width: 120px;
+      height: 200px;
+      margin: 5px;
+      animation: sway 4s ease-in-out infinite;
+    }
+    
+    @keyframes sway {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    <h1>Virtual Flowers muna kase di pako makalakad</h1>
+    <p></p>
+  </div>
+  
+  <!-- Garden container that will be filled with flowers -->
+  <div class="garden" id="garden"></div>
+  
+  <script>
+    // Define the SVG content for a huge blue lily flower
+    const lilySVG = `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(100,150) scale(2)">
+          <!-- Stem -->
+          <rect x="-2" y="-50" width="4" height="50" fill="green" />
+          <!-- Left leaf -->
+          <path d="M -2 -30 C -20 -40, -30 -20, -2 -10" fill="green" />
+          <!-- Right leaf -->
+          <path d="M 2 -30 C 20 -40, 30 -20, 2 -10" fill="green" />
+          <!-- Flower head -->
+          <g transform="translate(0,-50)">
+            <path d="M0,0 L8,-20 A8,8 0 0,1 -8,-20 Z" fill="#4A90E2" transform="rotate(0)" />
+            <path d="M0,0 L8,-20 A8,8 0 0,1 -8,-20 Z" fill="#4A90E2" transform="rotate(60)" />
+            <path d="M0,0 L8,-20 A8,8 0 0,1 -8,-20 Z" fill="#4A90E2" transform="rotate(120)" />
+            <path d="M0,0 L8,-20 A8,8 0 0,1 -8,-20 Z" fill="#4A90E2" transform="rotate(180)" />
+            <path d="M0,0 L8,-20 A8,8 0 0,1 -8,-20 Z" fill="#4A90E2" transform="rotate(240)" />
+            <path d="M0,0 L8,-20 A8,8 0 0,1 -8,-20 Z" fill="#4A90E2" transform="rotate(300)" />
+            <circle cx="0" cy="0" r="5" fill="#ffffff" />
+          </g>
+        </g>
+      </svg>
+    `;
+
+    // Fill the garden container with a number of lilies based on the container's width.
+    const garden = document.getElementById("garden");
+    const numberOfLilies = 16; // Adjust this number as desired
+
+    for (let i = 0; i < numberOfLilies; i++) {
+      const lilyDiv = document.createElement("div");
+      lilyDiv.classList.add("lily-planted");
+      lilyDiv.innerHTML = lilySVG;
+      // Assign a random animation delay for a natural sway effect
+      lilyDiv.style.animationDelay = (Math.random() * 2) + "s";
+      garden.appendChild(lilyDiv);
+    }
+  </script>
+</body>
+</html>
